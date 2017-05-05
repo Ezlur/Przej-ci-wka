@@ -13,8 +13,8 @@ dt = 0.05;
 t_end = 3.0*pi;
 
 % Physics here
-g = 9.81;   % m/s^2
-l = 10;      % m
+g = -9.81;   % m/s^2
+l = 1;      % m
 
 % LQR  weigts
 Q = [1 0; 0 1];
@@ -22,10 +22,7 @@ R = [1];
 
 % Main loop
 for i = 1 : t_end/dt
-    A = [0 1; -g*(cos(y(1)))/l 0]
-    B = [0; 1];
-    
-    M = jacob(@RHS, y, t, u)
+    [A B] = jacob(@RHS, y, t, u);
     
     [K P] = lqr_m(A, B, Q, R);
     u = -K*y;
@@ -38,7 +35,7 @@ for i = 1 : t_end/dt
     refresh;
     % plot(tp, yp(1,:), 'r', tp, yp(2,:), 'b', tp, up, 'g', tp(i), up(i), 'xg', tp(i), yp(1,i), 'or', tp(i), yp(2,i), 'xb');
     % pause(0.001)
-    % txt = sprintf('Symulacja dzialania wachadla matematycznego');
+    % txt = sprintf('Symulacja dzialania wahadla matematycznego');
     % grid on;
     % title(txt);
   
@@ -46,6 +43,6 @@ for i = 1 : t_end/dt
 end
 
 plot(tp, yp(1,:), '--r', tp, yp(2,:), '--b')
-txt = sprintf('Symulacja dzialania wachadla matematycznego');
+txt = sprintf('Symulacja dzialania wahadla matematycznego');
 grid on;
 title(txt);
