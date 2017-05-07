@@ -4,7 +4,7 @@ clear;
 close all;
 
 % Boundary values
-y = [1000 20000 2410 -4890]';
+y = [10 200 21 -48]';
 t = 0;
 u = [0 0 0 0]';
 
