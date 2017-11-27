@@ -1,8 +1,8 @@
 % Right hand side function for point-in-space spacecraft
-# with addition of solar preassure through N function
+% with space debris impact
 % y = [du dv dw dx dy dz]
 
-function dy = RHS3(y, t, u)
+function dy = RHS4(y, t, u)
 R = 7080e3;  % m     - geostacionary orbit
 g = 7.9536;  % m/s^2 - gravity at r
 m = 2623;      % kg    - mass of the spacecraft
@@ -22,12 +22,21 @@ B = [1/m   0     0    ;
      0     0     0    ;
      0     0     0   ];
      
-N = [-1.3200e-004 ;
+N = [0 ;
      0 ;
      0 ;
      0 ;
      0 ;
      0];
+     
+if t==60
+  N = [0 ;
+       0 ;
+       0 ;
+       0.015424 ;
+       0 ;
+       0];
+end
      
 dy = A*y + B*u + N;
 end
