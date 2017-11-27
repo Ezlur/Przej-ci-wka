@@ -1,5 +1,5 @@
 % Right hand side function for point-in-space spacecraft
-% y = [du dw dx dz]
+% y = [du dv dw dx dy dz]
 
 function dy = RHS2(y, t, u)
 R = 7080e3;  % m     - geostacionary orbit
